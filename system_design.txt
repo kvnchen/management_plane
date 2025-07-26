@@ -1,0 +1,105 @@
+
+AsyncAPI Document Generator
+
+Implement a feature to allow users to generate an AsyncAPI document from selected entities of a Kafka environment.
+
+Requirements
+  Functional
+    Users can:
+      select an environment, channels (topics), and messages
+      generate a draft document from the selections
+      add info, operations, and edit the document in a composer form
+      save and create a new document
+
+Architecture
+  
+  This feature will be a single page application that progressively scrolls down with each step.
+
+  Server
+    exposes REST API for accessing Kafka environments and saved documents (out of scope)
+
+  Controller (container component)
+    communicates with the server to receive Kafka environment entities
+    manages state
+
+  Wizard Component
+    tracks multi-step process progress and maintains selection state
+    contains links for quick navigation back to prior steps
+
+  List Component
+    renders a paginated list of selecable entities for the current step of the process
+
+  List Item Component
+    renders details of a selectable entity 
+
+  Preview Component
+    side panel rendering a live preview of the output document
+  
+  Composer Component
+    Form component allowing the user to edit the document
+
+  
+API
+
+  Getting Kafka environments
+  HTTP GET /environments -> Environment[]
+
+  Getting Entities
+
+    Channels
+    HTTP GET /environments/:env_id/channels
+
+    Messages
+    HTTP GET /environments/:env_id/channels/:channel_id/messages
+
+  Create Document
+  HTTP POST /documents
+  body: {
+    user_id: str,
+    spec: str,
+    info: {
+      title: str,
+      version: str
+    },
+    channels: [],
+    operations: [],
+    raw_text: str,
+  }
+  res: 
+    document_id: str
+                                
+
+Data Model
+
+  Kafka Environment
+    id: str,
+    title: str,
+    version: str
+
+  Channel
+    id: number,
+    name: str,
+    address: str,
+    env_id: str
+
+  Message
+    id: str,
+    name: str,
+    channel_id: str,
+    payload: any
+  
+  Document
+    user_id: str,
+    spec: str,
+    info: {
+      title: str,
+      version: str
+    },
+    channels: [],
+    operations: [],
+    raw_text: str,
+
+  User
+    id: str,
+    name: str
+

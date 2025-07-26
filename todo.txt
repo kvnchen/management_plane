@@ -1,0 +1,4 @@
+
+read async api tutorials
+system design doc
+speedrun frontend app prototype
