@@ -80,6 +80,7 @@ export default function Composer({ env, channels, messages, dispatch }: {
   return (
     <article id={`composer-3`} className={styles.composer}>
       <h2>Editing</h2>
+      <h4>Format: YAML</h4>
       <textarea
         id='editor'
         className={styles.editor} 

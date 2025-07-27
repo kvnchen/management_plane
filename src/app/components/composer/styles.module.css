@@ -8,12 +8,17 @@
   padding-bottom: 20px;
 }
 
+.composer h4 {
+  margin-top: 20px;
+}
+
 .editor {
-  margin-top: 40px;
+  margin-top: 20px;
   min-height: 70vh;
   width: 100%;
   font-size: 1.5em;
   field-sizing: content;
+  background-color: lightgray;
 }
 
 @media (width < 1280px) {

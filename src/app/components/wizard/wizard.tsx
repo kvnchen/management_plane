@@ -38,7 +38,9 @@ export default function Wizard() {
   return (
     <div className={styles.wizard}>
       <h1>AsyncAPI Document Generator</h1>
-      <p>Create an AsyncAPI document for applications consuming from Kafka.</p>
+      <p>
+        Create an <a href='https://www.asyncapi.com/docs/tutorials/getting-started/asyncapi-documents' target='_blank' rel='noopener noreferrer'>AsyncAPI</a> document for applications consuming from Kafka.
+      </p>
       <List 
         step={ENVIRONMENT} 
         set={setEnv} 
