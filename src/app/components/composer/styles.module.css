@@ -1,0 +1,11 @@
+.composer {
+  margin-top: 10vh;
+}
+
+.editor {
+  margin-top: 40px;
+  height: 60vh;
+  width: 100%;
+  font-size: 1.5em;
+  /* border-radius: 1px solid var(--button-primary-hover); */
+}

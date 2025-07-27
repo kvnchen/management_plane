@@ -26,7 +26,11 @@ export default function List({ step, set, path, mode, isDisabled }: {
 
   function selectionHandler(target: HTMLElement) {
     let ele;
-    if (target.id === '') {
+
+    // don't capture clicks on the container
+    if (target.id === `list-container-${step}`)
+      return;
+    else if (target.id === '') {
       ele = target.parentElement as HTMLElement;
     } else 
       ele = target;
@@ -64,9 +68,10 @@ export default function List({ step, set, path, mode, isDisabled }: {
   }
 
   return (
-    <article>
+    <article className={styles.list}>
       <h2>{stepHeader[step]}</h2>
-      <div 
+      <div
+        id={`list-container-${step}`}
         className={styles['list-container']}
         onClick={(e) => {
           if (!isDisabled)

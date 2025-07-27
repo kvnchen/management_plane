@@ -19,8 +19,14 @@
   }
 }
 
-.main {
+.header {
+  height: 10vh;
+}
 
+.main {
+  margin-left: 15vw;
+  margin-right: 15vw;
+  width: 70vw;
 }
 
 a.primary {
@@ -35,6 +41,7 @@ a.secondary {
 }
 
 .footer {
+  height: 10vh;
   display: flex;
   gap: 24px;
 }

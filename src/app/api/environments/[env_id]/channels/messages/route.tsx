@@ -8,7 +8,7 @@ const messages: {
     {
       id: 0,
       name: 'sayHelloMessage',
-      channel_id: 'hello',
+      channel_id: 0,
       payload: {
         type: 'string',
         pattern: '^hello .+$'
@@ -27,7 +27,7 @@ export async function GET(request: NextRequest) {
   
   if (searchParams.has('channelIds')) {
     const channelIds: Set<string> = new Set((searchParams.get('channelIds') as string).split(','));
-    output = output.filter((obj) => channelIds.has(obj.channel_id));
+    output = output.filter((obj) => channelIds.has(String(obj.channel_id)));
   }
 
   return new Response(JSON.stringify(output), {

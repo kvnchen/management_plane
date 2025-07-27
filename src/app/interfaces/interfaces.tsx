@@ -15,6 +15,6 @@ export interface Channel {
 export interface Message {
   id: number,
   name: string,
-  channel_id: string,
+  channel_id: number,
   payload: any
 }

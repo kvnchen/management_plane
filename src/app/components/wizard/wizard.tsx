@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import List from 'components/list/list';
 import styles from './styles.module.css';
+import List from 'components/list/list';
+import Composer from 'components/composer/composer';
 import { Environment, Channel, Message } from 'interfaces/interfaces';
 
 // Steps
@@ -31,23 +32,7 @@ export default function Wizard() {
 
   return (
     <div className={styles.wizard}>
-      {/* testing */}
-      {env && (
-        <p>
-          Env: {env.title}
-        </p>
-      )}
-      {channels && (
-        <p>
-          Channels: {channels.map((channel, index) => <span key={index}>{channel.name}</span>)}
-        </p>
-      )}
-      {messages && (
-        <p>
-          Messages: {messages.map((channel, index) => <span key={index}>{channel.name}</span>)}
-        </p>
-      )}
-
+      <h1>AsyncAPI Document Generator</h1>
       <List 
         step={ENVIRONMENT} 
         set={setEnv} 
@@ -66,7 +51,7 @@ export default function Wizard() {
         />
       )}
 
-      {step >= MESSAGES && env !== null && (
+      {step >= MESSAGES && env !== null && channels !== null && (
         <List 
           step={MESSAGES} 
           set={setMessages} 
@@ -76,8 +61,12 @@ export default function Wizard() {
         />
       )}
 
+      {step === EDITING && env !== null && channels !== null && messages !== null && (
+        <Composer env={env} channels={channels} messages={messages} />
+      )}
+
       <div className={styles['button-row']}>
-        {step > 0 && (
+        {step > ENVIRONMENT && (
           <button
             onClick={() => {
               if (step === CHANNELS)
@@ -92,12 +81,14 @@ export default function Wizard() {
           </button>
         )}
 
-        <button
-          disabled={nextButtonDisabled()}
-          onClick={() => setStep(step + 1)}
-        >
-          Next
-        </button>
+        {step < EDITING && (
+          <button
+            disabled={nextButtonDisabled()}
+            onClick={() => setStep(step + 1)}
+          >
+            Next
+          </button>
+        )}
       </div>
     </div>
   )
