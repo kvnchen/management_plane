@@ -21,6 +21,8 @@
 
 .header {
   height: 10vh;
+  padding: 20px;
+  border-bottom: 1px solid lightgray;
 }
 
 .main {

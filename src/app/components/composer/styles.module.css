@@ -4,7 +4,7 @@
 }
 
 .composer h2 {
-  border-bottom: 1px solid var(--button-primary-hover);
+  border-bottom: 1px solid lightgray;
   padding-bottom: 20px;
 }
 

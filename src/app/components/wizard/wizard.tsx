@@ -38,6 +38,7 @@ export default function Wizard() {
   return (
     <div className={styles.wizard}>
       <h1>AsyncAPI Document Generator</h1>
+      <p>Create an AsyncAPI document for applications consuming from Kafka.</p>
       <List 
         step={ENVIRONMENT} 
         set={setEnv} 
@@ -105,7 +106,8 @@ export default function Wizard() {
                 })
               });
               const parsed = await res.json();
-              console.log(parsed);
+              // placeholder for redirect to a document view
+              window.alert(`New document created with id = ${parsed.id}`);
             }}
           >
             Save

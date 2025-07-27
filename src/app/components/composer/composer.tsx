@@ -84,6 +84,9 @@ export default function Composer({ env, channels, messages, dispatch }: {
         id='editor'
         className={styles.editor} 
         autoCorrect='off'
+        autoComplete='off'
+        autoCapitalize='off'
+        spellCheck='false'
         value={contents} 
         onChange={(e) => {
           setContents(e.target.value);
