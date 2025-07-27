@@ -9,3 +9,11 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.list-item:hover {
+  border: 1px solid #8cb4ff;
+}
+
+.list-item.selected {
+  border: 2px solid #8cb4ff;
+}
