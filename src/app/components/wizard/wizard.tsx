@@ -18,6 +18,7 @@ export default function Wizard() {
   const [env, setEnv] = useState<Environment | null>(null);
   const [channels, setChannels] = useState<Channel[] | null>(null);
   const [messages, setMessages] = useState<Message[] | null>(null);
+  const [document, setDocument] = useState<string>('');
   
   function nextButtonDisabled(): boolean {
     if (step === ENVIRONMENT)
@@ -66,7 +67,7 @@ export default function Wizard() {
       )}
 
       {step === EDITING && env !== null && channels !== null && messages !== null && (
-        <Composer env={env} channels={channels} messages={messages} />
+        <Composer env={env} channels={channels} messages={messages} dispatch={setDocument} />
       )}
 
       <div className={styles['button-row']}>
@@ -91,6 +92,23 @@ export default function Wizard() {
             onClick={() => setStep(step + 1)}
           >
             Next
+          </button>
+        )}
+
+        {step === EDITING && (
+          <button
+            onClick={async () => {
+              const res = await fetch('http://localhost:3000/api/documents', {
+                method: 'POST',
+                body: JSON.stringify({
+                  document: document
+                })
+              });
+              const parsed = await res.json();
+              console.log(parsed);
+            }}
+          >
+            Save
           </button>
         )}
       </div>

@@ -10,7 +10,14 @@
 
 .editor {
   margin-top: 40px;
-  min-height: 60vh;
+  min-height: 70vh;
   width: 100%;
-  font-size: 1.3em;
+  font-size: 1.5em;
+  field-sizing: content;
+}
+
+@media (width < 1280px) {
+  .editor {
+    font-size: 1.25em;
+  }
 }

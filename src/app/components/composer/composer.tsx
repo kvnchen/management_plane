@@ -3,10 +3,11 @@ import styles from './styles.module.css';
 import { Environment, Channel, Message } from 'interfaces/interfaces';
 import { useState, useEffect } from 'react';
 
-export default function Composer({ env, channels, messages }: {
+export default function Composer({ env, channels, messages, dispatch }: {
   env: Environment,
   channels: Channel[],
-  messages: Message[]
+  messages: Message[],
+  dispatch: Function
 }) {
   useEffect(() => {
     window.scroll({
@@ -70,9 +71,11 @@ export default function Composer({ env, channels, messages }: {
 
     return fragments.join('\n');
   }
-
   const [contents, setContents] = useState<string>(generateContents());
 
+  useEffect(() => {
+    dispatch(contents);
+  }, [contents]);
 
   return (
     <article id={`composer-3`} className={styles.composer}>
@@ -82,7 +85,9 @@ export default function Composer({ env, channels, messages }: {
         className={styles.editor} 
         autoCorrect='off'
         value={contents} 
-        onChange={(e) => setContents(e.target.value)}
+        onChange={(e) => {
+          setContents(e.target.value);
+        }}
       />
     </article>
   )
