@@ -1,10 +1,11 @@
 import { type NextRequest } from 'next/server';
 import { Message } from 'interfaces/interfaces';
 
+// fake data
 const messages: {
   [key: string]: Message[]
 } = {
-  'hello': [
+  '0': [
     {
       id: 0,
       name: 'sayHelloMessage',
@@ -12,6 +13,26 @@ const messages: {
       payload: {
         type: 'string',
         pattern: '^hello .+$'
+      }
+    }
+  ],
+  '1': [
+    {
+      id: 1,
+      name: 'userSignedUp',
+      channel_id: 1,
+      payload: {
+        type: 'object',
+        properties: {
+          userId: {
+            type: 'integer',
+            description: 'This property describes the ID of the user'
+          },
+          userEmail: {
+            type: 'string',
+            description: 'This property describes the Email of the user'
+          }
+        }
       }
     }
   ]

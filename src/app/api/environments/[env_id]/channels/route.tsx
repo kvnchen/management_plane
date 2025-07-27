@@ -13,6 +13,15 @@ const channels: {
       env_id: 'hello-world'
     },
   ],
+  'user-signup': [
+    {
+      id: 1,
+      name: 'userSignedUp',
+      address: 'user_signedup',
+      env_id: 'user-signup',
+      description: 'This channel contains a message per each user who signs up in our application.'
+    }
+  ]
 };
 
 export async function GET(

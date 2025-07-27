@@ -24,6 +24,14 @@ export default function List({ step, set, path, mode, isDisabled }: {
     getData();
   }, []);
 
+  useEffect(() => {
+    if (!isDisabled)
+      window.scroll({
+        top: (document.getElementById(`list-${step}`) as HTMLElement).getBoundingClientRect().y + window.scrollY,
+        behavior: 'smooth'
+      });
+  }, [data]);
+
   function selectionHandler(target: HTMLElement) {
     let ele;
 
@@ -68,7 +76,7 @@ export default function List({ step, set, path, mode, isDisabled }: {
   }
 
   return (
-    <article className={styles.list}>
+    <article id={`list-${step}`} className={styles.list}>
       <h2>{stepHeader[step]}</h2>
       <div
         id={`list-container-${step}`}

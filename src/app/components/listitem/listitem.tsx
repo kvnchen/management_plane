@@ -35,7 +35,7 @@ export default function ListItem({ data, type, index, selected }: {
             width={70}
             height={70}
           />
-          <div>{`Address: ${data.address}`}</div>
+          <div>{`${data.address}`}</div>
         </>
       )}
       {type === 'Messages' && (

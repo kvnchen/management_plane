@@ -1,10 +1,16 @@
 .list {
-  margin-top: 10vh;
+  margin-top: 20vh;
+}
+
+.list h2 {
+  border-bottom: 1px solid var(--button-primary-hover);
+  padding-bottom: 20px;
 }
 
 .list-container {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  gap: 40px;
 }

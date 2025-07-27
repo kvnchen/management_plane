@@ -30,6 +30,10 @@ export default function Wizard() {
     return false;
   }
 
+  function formatChannelIds(): string {
+    return (channels as Channel[]).map((c) => c.id).join(',');
+  }
+
   return (
     <div className={styles.wizard}>
       <h1>AsyncAPI Document Generator</h1>
@@ -55,7 +59,7 @@ export default function Wizard() {
         <List 
           step={MESSAGES} 
           set={setMessages} 
-          path={`http://localhost:3000/api/environments/${env.id}/channels/messages`}
+          path={`http://localhost:3000/api/environments/${env.id}/channels/messages?channelIds=${formatChannelIds()}`}
           mode='many'
           isDisabled={step !== MESSAGES}
         />
