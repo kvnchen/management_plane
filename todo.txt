@@ -1,4 +1,6 @@
 
-read async api tutorials
-system design doc
+[x] read async api tutorials
+[x] system design doc
 speedrun frontend app prototype
+  [x] api route stubs
+  [] list & listitem
