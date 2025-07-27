@@ -57,7 +57,7 @@ export default function List({ step, set, path, mode, isDisabled }: {
       setSelection(temp);
 
       if (temp.size > 0) {
-        set(Array.from(temp))
+        set(Array.from(temp).map((index) => data[index]));
       } else
         set(null);
     }

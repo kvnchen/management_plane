@@ -25,6 +25,32 @@ export default function ListItem({ data, type, index, selected }: {
           <div>{`Version: ${data.version}`}</div>
         </>
       )}
+      {type === 'Channels' && (
+        <>
+          <h4>{data.name}</h4>
+          <Image
+            aria-hidden
+            src="/kafka.svg"
+            alt="Apache Kafka logo"
+            width={70}
+            height={70}
+          />
+          <div>{`Address: ${data.address}`}</div>
+        </>
+      )}
+      {type === 'Messages' && (
+        <>
+          <h4>{data.name}</h4>
+          <Image
+            aria-hidden
+            src="/kafka.svg"
+            alt="Apache Kafka logo"
+            width={70}
+            height={70}
+          />
+          <div>{`Type: ${data.payload.type}`}</div>
+        </>
+      )}
     </div>
   )
 }

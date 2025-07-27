@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import List from 'components/list/list';
 import styles from './styles.module.css';
-import { Environment, Channel } from 'interfaces/interfaces';
+import { Environment, Channel, Message } from 'interfaces/interfaces';
 
 // Steps
 const ENVIRONMENT = 0;
@@ -16,12 +16,15 @@ export default function Wizard() {
   const [step, setStep] = useState<number>(ENVIRONMENT);
   const [env, setEnv] = useState<Environment | null>(null);
   const [channels, setChannels] = useState<Channel[] | null>(null);
+  const [messages, setMessages] = useState<Message[] | null>(null);
   
   function nextButtonDisabled(): boolean {
     if (step === ENVIRONMENT)
       return env === null;
     else if (step === CHANNELS)
       return channels === null;
+    else if (step === MESSAGES)
+      return messages === null;
 
     return false;
   }
@@ -31,7 +34,17 @@ export default function Wizard() {
       {/* testing */}
       {env && (
         <p>
-          {env.title}
+          Env: {env.title}
+        </p>
+      )}
+      {channels && (
+        <p>
+          Channels: {channels.map((channel, index) => <span key={index}>{channel.name}</span>)}
+        </p>
+      )}
+      {messages && (
+        <p>
+          Messages: {messages.map((channel, index) => <span key={index}>{channel.name}</span>)}
         </p>
       )}
 
@@ -43,7 +56,7 @@ export default function Wizard() {
         isDisabled={step !== ENVIRONMENT}
       />
 
-      {step === CHANNELS && env !== null && (
+      {step >= CHANNELS && env !== null && (
         <List 
           step={CHANNELS} 
           set={setChannels} 
@@ -53,13 +66,24 @@ export default function Wizard() {
         />
       )}
 
+      {step >= MESSAGES && env !== null && (
+        <List 
+          step={MESSAGES} 
+          set={setMessages} 
+          path={`http://localhost:3000/api/environments/${env.id}/channels/messages`}
+          mode='many'
+          isDisabled={step !== MESSAGES}
+        />
+      )}
+
       <div className={styles['button-row']}>
         {step > 0 && (
           <button
             onClick={() => {
               if (step === CHANNELS)
                 setChannels(null);
-              // else if (step === MESSAGES)
+              else if (step === MESSAGES)
+                setMessages(null);
 
               setStep(step - 1);
             }}
